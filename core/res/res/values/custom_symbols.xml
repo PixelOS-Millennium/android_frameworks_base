@@ -101,15 +101,6 @@
      <java-symbol type="string" name="url_copy_success" />
      <java-symbol type="string" name="url_copy_failed" />
 
-    <!-- Prop/KeyboxImitationHooks -->
-    <java-symbol type="array" name="config_certifiedBuildProperties" />
-    <java-symbol type="array" name="config_certifiedKeybox" />
-    <java-symbol type="string" name="config_stockFingerprint" />
-    <java-symbol type="string" name="config_netflixSpoofModel" />
-
-   <!-- API URL to fetch PIF from -->
-   <java-symbol type="string" name="config_pifUpdateUrl" />
-
    <!-- Defines the actions shown in advanced reboot submenu -->
    <java-symbol type="array" name="config_restartActionsList" />
 </resources>
