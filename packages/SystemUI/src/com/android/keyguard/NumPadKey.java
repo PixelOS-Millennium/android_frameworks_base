@@ -25,8 +25,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.PowerManager;
 import android.os.SystemClock;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -124,7 +122,6 @@ public class NumPadKey extends ViewGroup implements NumPadAnimationListener {
         mKlondikeText = (TextView) findViewById(R.id.klondike_text);
 
         updateText();
-        setContentDescription(mDigitText.getText().toString());
 
         Drawable background = getBackground();
         if (background instanceof GradientDrawable) {
@@ -146,18 +143,16 @@ public class NumPadKey extends ViewGroup implements NumPadAnimationListener {
     }
 
     private void updateText() {
-        boolean scramblePin = Settings.System.getIntForUser(getContext().getContentResolver(),
-                Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, 0,
-                UserHandle.USER_CURRENT) == 1;
         if (mDigit >= 0) {
             mDigitText.setText(Integer.toString(mDigit));
+            setContentDescription(mDigitText.getText().toString());
             if (sKlondike == null) {
                 sKlondike = getResources().getStringArray(R.array.lockscreen_num_pad_klondike);
             }
             if (sKlondike != null && sKlondike.length > mDigit) {
                 String klondike = sKlondike[mDigit];
                 final int len = klondike.length();
-                if (len > 0  || scramblePin) {
+                if (len > 0) {
                     mKlondikeText.setText(klondike);
                 } else if (mKlondikeText.getVisibility() != View.GONE) {
                     mKlondikeText.setVisibility(View.INVISIBLE);
